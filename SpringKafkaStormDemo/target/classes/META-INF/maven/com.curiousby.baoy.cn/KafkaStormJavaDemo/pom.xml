@@ -1,0 +1,304 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.curiousby.baoy.cn</groupId>
+  <artifactId>KafkaStormJavaDemo</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+  <name>SpringKafkaStormDemo</name>
+  <url>http://maven.apache.org</url>
+
+
+
+	<!-- properties constant -->
+	<properties>
+		<spring.version>4.2.5.RELEASE</spring.version>
+		  <java.version>1.7</java.version>
+		  <log4j.version>1.2.17</log4j.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>clojars.org</id>
+			<url>http://clojars.org/repo</url>
+		</repository>
+	</repositories>
+ 
+
+	 
+		
+		
+	<dependencies> 
+	 
+         <dependency>
+             <groupId>org.apache.storm</groupId>
+             <artifactId>storm-core</artifactId>
+             <version>0.9.4</version>
+             <scope>provided</scope>
+             <exclusions>
+            <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>log4j-over-slf4j</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+            </exclusion>
+
+        </exclusions>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.storm</groupId>
+             <artifactId>storm-kafka</artifactId>
+             <version>0.9.4</version>
+             <exclusions>
+            <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+            </exclusion>
+        </exclusions>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.storm</groupId>
+             <artifactId>storm-hdfs</artifactId>
+             <version>0.9.4</version>
+              <exclusions>
+            <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+            </exclusion>
+        </exclusions>
+         </dependency>
+         
+
+
+         <dependency>
+             <groupId>org.apache.kafka</groupId>
+             <artifactId>kafka_2.10</artifactId>
+             <version>0.8.2.1</version>
+             <exclusions>
+                 <exclusion>
+                     <groupId>org.apache.zookeeper</groupId>
+                     <artifactId>zookeeper</artifactId>
+                 </exclusion>
+                 <exclusion>
+                     <groupId>log4j</groupId>
+                     <artifactId>log4j</artifactId>
+                 </exclusion> 
+            <exclusion>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+            </exclusion> 
+             </exclusions>
+         </dependency>
+	
+	
+		<!-- json start -->	
+		<dependency>
+		  <groupId>com.googlecode.json-simple</groupId>
+		  <artifactId>json-simple</artifactId>
+		  <version>1.1.1</version>
+		</dependency>
+		<!-- JSON转化 -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
+		<!-- JSON库 -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.1.23</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20160810</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.2.3</version>
+		</dependency>
+		<!--  <dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.4</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.4</version>
+			<type>jar</type>
+		</dependency>  --> 
+		
+		
+		 <!-- Other Dependency -->
+    <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>${log4j.version}</version>
+    </dependency>
+    
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+		
+		<!-- hdfs start -->
+ 		<!-- 
+ 		<dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-hdfs</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-mapreduce-client-core</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-auth</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        -->
+		
+		
+	 <!-- <dependency>  
+         <groupId>org.apache.storm</groupId>  
+         <artifactId>storm-core</artifactId>  
+        <version>0.9.5</version>  
+         <scope>provided</scope>  
+     </dependency>  
+     <dependency>  
+        <groupId>org.apache.storm</groupId>  
+         <artifactId>storm-kafka</artifactId>  
+         <version>0.9.5</version>  
+     </dependency>  
+     <dependency>  
+         <groupId>org.apache.kafka</groupId>  
+         <artifactId>kafka_2.10</artifactId>  
+         <version>0.9.0.1</version>  
+             <exclusions>  
+                 <exclusion>  
+                     <groupId>org.apache.zookeeper</groupId>  
+                     <artifactId>zookeeper</artifactId>  
+                </exclusion>  
+                 <exclusion>  
+                     <groupId>log4j</groupId>  
+                     <artifactId>log4j</artifactId>  
+                 </exclusion>  
+                <exclusion>  
+                     <groupId>org.slf4j</groupId>  
+                    <artifactId>slf4j-log4j12</artifactId>  
+                </exclusion>  
+             </exclusions>  
+     </dependency>  
+     --> 
+	 
+ 		<dependency>
+			<groupId>jdk.tools</groupId>
+			<artifactId>jdk.tools</artifactId>
+			<version>1.7</version>
+			<scope>system</scope>
+			<systemPath>${JAVA_HOME}/lib/tools.jar</systemPath>
+		</dependency>
+
+
+	</dependencies>
+	<build>
+		<finalName>SpringKafkaStormDemo</finalName>
+		 
+		<plugins> 
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.codehaus.plexus</groupId>
+						<artifactId>plexus-compiler-javac</artifactId>
+						<version>2.5</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<encoding>UTF-8</encoding>
+					<compilerArguments>
+						<verbose />
+						<bootclasspath>${java.home}/lib/rt.jar:${java.home}/lib/jce.jar</bootclasspath>
+					</compilerArguments>
+				</configuration>
+			</plugin>
+		 
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-shade-plugin</artifactId>
+			    <version>1.4</version>
+			    <configuration>
+			        <appendAssemblyId>false</appendAssemblyId> 
+				   <finalName>${project.artifactId}_TerminalInfosAnalysisTopology_main_start</finalName>
+			        <createDependencyReducedPom>true</createDependencyReducedPom>
+			    </configuration>
+			    <executions>
+			        <execution>
+			            <phase>package</phase>
+			            <goals>
+			                <goal>shade</goal>
+			            </goals>
+			            <configuration>
+			                <transformers>
+			                    <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+			                    <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+			                        <mainClass>com.curiousby.baoyou.cn.storm.TerminalInfosAnalysisTopology</mainClass>
+			                    </transformer>
+			                </transformers>
+			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>
+			<plugin>  
+              <artifactId>maven-assembly-plugin</artifactId>  
+              <configuration>  
+                   <appendAssemblyId>false</appendAssemblyId> 
+				   <finalName>${project.artifactId}_main_start</finalName>
+                  <descriptorRefs>    
+                      <descriptorRef>jar-with-dependencies</descriptorRef>  
+                  </descriptorRefs>  
+                  <archive>  
+                     <manifest>  
+                       <mainClass>com.curiousby.baoyou.cn.storm.TerminalInfosAnalysisTopology</mainClass>  
+                     </manifest>  
+                   </archive>  
+               </configuration>  
+            </plugin> 
+			
+		</plugins>
+	</build>
+</project>
+ 

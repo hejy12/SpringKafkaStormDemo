@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+ 
+	<appender name="type2_appender" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${BAOY_HOME}/logs/storm.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-d{ABSOLUTE} [%p]-[%c] %m%n" />
+		</layout>
+	</appender>
+	<appender name="type2" class="org.apache.log4j.AsyncAppender">
+		<param name="BufferSize" value="1024000" />
+		<appender-ref ref="type2_appender" />
+	</appender>
+	 
+	<root>
+		<priority value="debug" /> 
+		<appender-ref ref="type2" />
+	</root>
+</log4j:configuration>
